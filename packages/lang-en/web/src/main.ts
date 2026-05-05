@@ -196,10 +196,14 @@ function updateStatsBar() {
 
 function showCorrectFeedback(item: DrillItem) {
   const fb = document.getElementById("feedback")!;
+  const sourcesHTML = item.sources && item.sources.length
+    ? `<div class="fb-sources">出典: ${item.sources.map((u, i) => `<a href="${escapeAttr(u)}" target="_blank" rel="noopener noreferrer">[${i + 1}]</a>`).join(" ")}</div>`
+    : "";
   fb.innerHTML = `
     <div class="fb fb-correct">
       <div class="fb-title">正解</div>
       <div class="fb-body">${escapeHTML(item.why)}</div>
+      ${sourcesHTML}
     </div>
   `;
 }

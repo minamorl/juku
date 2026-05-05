@@ -1,0 +1,223 @@
+[
+  {
+    "id": "math-pq-1",
+    "subject": "math",
+    "skillTag": "probability.permutation_vs_combination",
+    "prompt": "5人から3人を選んで一列に並べる方法は何通り？",
+    "correct": "順列 (5P3 = 60)",
+    "why": "順序を区別して『並べる』ので順列 nPr。5P3 = 5×4×3 = 60。",
+    "choices": [
+      {
+        "value": "順列 (5P3 = 60)"
+      },
+      {
+        "value": "組合せ (5C3 = 10)",
+        "validContext": {
+          "sentence": "5人から3人を選ぶだけで順序を区別しないなら 5C3 = 10通り。",
+          "gloss": "『選ぶだけ』なら組合せ。並べる/役割を割り当てるなら順列。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "math-prob-cond-1",
+    "subject": "math",
+    "skillTag": "probability.conditional",
+    "prompt": "サイコロを1回振って偶数が出たという条件のもとで、それが4以上である確率は？",
+    "correct": "2/3",
+    "why": "条件付き確率: 偶数={2,4,6}の3通りのうち4以上は{4,6}の2通り。2/3。",
+    "choices": [
+      {
+        "value": "2/3"
+      },
+      {
+        "value": "1/3",
+        "validContext": {
+          "sentence": "条件なしで『偶数かつ4以上』の確率なら2/6 = 1/3。",
+          "gloss": "条件付き確率 P(A|B) は分母が事象B(偶数の3通り)に絞られる。条件なしの確率と区別。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "math-stat-mean-median-1",
+    "subject": "math",
+    "skillTag": "stat.mean_median",
+    "prompt": "データ {2,3,3,4,100} を1つの代表値で表すとき、外れ値に強いのは？",
+    "correct": "中央値",
+    "why": "中央値は順位ベースなので極端な値の影響を受けにくい。このデータでは中央値=3。",
+    "choices": [
+      {
+        "value": "中央値"
+      },
+      {
+        "value": "平均値",
+        "validContext": {
+          "sentence": "外れ値がないデータ {2,3,3,4,5} では平均値=3.4が代表として有効。",
+          "gloss": "平均値は全データの和を使うため外れ値に弱いが、対称な分布では最も情報量が多い。"
+        }
+      },
+      {
+        "value": "最頻値",
+        "validContext": {
+          "sentence": "離散カテゴリ(色・好み)では最頻値が代表。",
+          "gloss": "最頻値は質的データ向け。連続値では複数のピークがあると不安定。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "math-stat-var-sd-1",
+    "subject": "math",
+    "skillTag": "stat.variance_sd",
+    "prompt": "データのばらつきを元の単位(cm, kgなど)と同じ単位で表すには？",
+    "correct": "標準偏差",
+    "why": "標準偏差は分散の平方根。元データと単位が一致する。",
+    "choices": [
+      {
+        "value": "標準偏差"
+      },
+      {
+        "value": "分散",
+        "validContext": {
+          "sentence": "分散はばらつきの『2乗』スケール。理論的計算(分散の加法性など)では分散を使う。",
+          "gloss": "単位はcm²やkg²になる。直感的解釈には標準偏差。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "math-calc-diff-int-1",
+    "subject": "math",
+    "skillTag": "calculus.differentiation_vs_integration",
+    "prompt": "速度から位置を求めるには？",
+    "correct": "積分",
+    "why": "速度を時間で積分すると位置(変位)。微分と積分は逆操作。",
+    "choices": [
+      {
+        "value": "積分"
+      },
+      {
+        "value": "微分",
+        "validContext": {
+          "sentence": "位置から速度を求めるには微分。さらに微分すると加速度。",
+          "gloss": "微分は『瞬間の変化率』、積分は『累積』。階層: 位置→(微分)→速度→(微分)→加速度。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "math-vec-dot-cross-1",
+    "subject": "math",
+    "skillTag": "vector.dot_cross",
+    "prompt": "2つのベクトルがなす角を求めたい。使うのは？",
+    "correct": "内積",
+    "why": "a・b = |a||b|cosθ から cosθ が直接出る。",
+    "choices": [
+      {
+        "value": "内積"
+      },
+      {
+        "value": "外積",
+        "validContext": {
+          "sentence": "2ベクトルが張る平行四辺形の面積を求めたいなら外積 |a×b| = |a||b|sinθ。",
+          "gloss": "内積は cos(角度・並行性)、外積は sin(垂直性・面積)。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "math-fig-similar-cong-1",
+    "subject": "math",
+    "skillTag": "geometry.similar_congruent",
+    "prompt": "形が同じで大きさは違う2つの三角形の関係は？",
+    "correct": "相似",
+    "why": "相似は比の保存(角度同じ・辺の比一定)。",
+    "choices": [
+      {
+        "value": "相似"
+      },
+      {
+        "value": "合同",
+        "validContext": {
+          "sentence": "形も大きさも完全に同じ(重ね合わせ可能)なら合同。",
+          "gloss": "合同は相似比 1:1 の特別な場合。合同 ⊂ 相似。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "math-num-rational-1",
+    "subject": "math",
+    "skillTag": "number.rational_irrational",
+    "prompt": "√2 はどちらに分類される？",
+    "correct": "無理数",
+    "why": "√2 は分数 a/b (a, b は整数, b≠0) で表せないため無理数。",
+    "choices": [
+      {
+        "value": "無理数"
+      },
+      {
+        "value": "有理数",
+        "validContext": {
+          "sentence": "0.333... = 1/3 は循環小数だが分数で表せるので有理数。",
+          "gloss": "循環する無限小数 = 有理数。循環しない無限小数 = 無理数 (√2, π, e)。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "math-eq-quad-disc-1",
+    "subject": "math",
+    "skillTag": "equation.quadratic_discriminant",
+    "prompt": "二次方程式 ax² + bx + c = 0 が異なる2つの実数解を持つ条件は？",
+    "correct": "b² − 4ac > 0",
+    "why": "判別式 D = b²−4ac > 0 のとき実数解2個。",
+    "choices": [
+      {
+        "value": "b² − 4ac > 0"
+      },
+      {
+        "value": "b² − 4ac = 0",
+        "validContext": {
+          "sentence": "D = 0 のとき重解(実数解1個)。",
+          "gloss": "重解は同じ値が2回。グラフはx軸に接する。"
+        }
+      },
+      {
+        "value": "b² − 4ac < 0",
+        "validContext": {
+          "sentence": "D < 0 のとき実数解なし(虚数解2個)。",
+          "gloss": "高校数学IIBの複素数の範囲では共役な複素数解。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "math-trig-sin-cos-1",
+    "subject": "math",
+    "skillTag": "trig.sin_cos.basics",
+    "prompt": "直角三角形で、斜辺と隣辺(底辺)の比を表す関数は？",
+    "correct": "cos",
+    "why": "cosθ = 隣辺/斜辺。",
+    "choices": [
+      {
+        "value": "cos"
+      },
+      {
+        "value": "sin",
+        "validContext": {
+          "sentence": "対辺/斜辺は sin。",
+          "gloss": "覚え方: sin は『縦/斜辺』、cos は『横/斜辺』。"
+        }
+      },
+      {
+        "value": "tan",
+        "validContext": {
+          "sentence": "対辺/隣辺は tan。",
+          "gloss": "tan は傾き(slope)を表す。直線の方程式 y=ax の a が tan に対応。"
+        }
+      }
+    ]
+  }
+]

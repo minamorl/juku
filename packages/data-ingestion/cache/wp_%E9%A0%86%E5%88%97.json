@@ -1,0 +1,5 @@
+{
+  "title": "順列",
+  "extract": "数え上げ数学における順列（じゅんれつ、英: sequence without repetition, partial permutation、仏: arrangement）は、区別可能な特定の元から有限個を選んで作られる重複の無い列をいう。\n初等組合せ論における「写像12相」はともに 有限集合から k-個の元を取り出す方法として可能なものを数え上げる問題に関するものである。取り出す順番を勘案するのが k-順列、順番を無視するのが k-組合せである。",
+  "fullurl": "https://ja.wikipedia.org/wiki/%E9%A0%86%E5%88%97"
+}

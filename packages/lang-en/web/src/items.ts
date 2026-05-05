@@ -20,6 +20,7 @@ export interface DrillItem {
   choices: Choice[];
   correct: string;
   why: string;
+  sources?: string[];
 }
 
 export const SUBJECT_META: Record<Subject, { label: string; emoji: string; tagline: string }> = {
@@ -369,14 +370,39 @@ const SOCIAL_ITEMS: DrillItem[] = [
   },
 ];
 
+import { WIKIPEDIA_ITEMS } from "./items-wikipedia";
+import {
+  CURATED_ENGLISH,
+  CURATED_MATH,
+  CURATED_JAPANESE,
+  CURATED_SCIENCE,
+  CURATED_SOCIAL,
+} from "./items-curated";
+
 export const ITEMS: DrillItem[] = [
   ...ENGLISH_ITEMS,
   ...MATH_ITEMS,
   ...JAPANESE_ITEMS,
   ...SCIENCE_ITEMS,
   ...SOCIAL_ITEMS,
+  ...CURATED_ENGLISH,
+  ...CURATED_MATH,
+  ...CURATED_JAPANESE,
+  ...CURATED_SCIENCE,
+  ...CURATED_SOCIAL,
+  ...WIKIPEDIA_ITEMS,
 ];
 
 export function itemsBySubject(subject: Subject): DrillItem[] {
   return ITEMS.filter(it => it.subject === subject);
+}
+
+// Fisher-Yates shuffle (returns a new array, original untouched).
+export function shuffled<T>(arr: T[]): T[] {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
 }

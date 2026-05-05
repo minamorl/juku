@@ -1,0 +1,223 @@
+[
+  {
+    "id": "sci-mass-weight-1",
+    "subject": "science",
+    "skillTag": "physics.mass_weight",
+    "prompt": "月面でも値が変わらないのは？",
+    "correct": "質量",
+    "why": "質量は物質の量(kg)で場所によらず一定。",
+    "choices": [
+      {
+        "value": "質量"
+      },
+      {
+        "value": "重さ",
+        "validContext": {
+          "sentence": "重さは重力で変わる。月では地球の約1/6。",
+          "gloss": "重さ = 質量 × 重力加速度(N)。質量 ≠ 重さ。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "sci-velocity-accel-1",
+    "subject": "science",
+    "skillTag": "physics.velocity_acceleration",
+    "prompt": "等速直線運動で 0 になるのは？",
+    "correct": "加速度",
+    "why": "速度が変化しないので加速度=0。速度自体は0ではない。",
+    "choices": [
+      {
+        "value": "加速度"
+      },
+      {
+        "value": "速度",
+        "validContext": {
+          "sentence": "止まっている物体は速度=0、加速度も0。",
+          "gloss": "等速 = 速度一定 ≠ 0。加速度は速度の変化率。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "sci-voltage-current-1",
+    "subject": "science",
+    "skillTag": "physics.voltage_current",
+    "prompt": "電気回路で『流れの量』にあたるのは？",
+    "correct": "電流(A)",
+    "why": "電流 = 単位時間あたりに流れる電荷の量。アンペア(A)で測る。",
+    "choices": [
+      {
+        "value": "電流(A)"
+      },
+      {
+        "value": "電圧(V)",
+        "validContext": {
+          "sentence": "電圧は『流そうとする力(電位差)』。ボルト(V)。",
+          "gloss": "水で例えると電圧=水位差、電流=実際に流れる水量、抵抗=管の細さ。オームの法則 V=IR。"
+        }
+      },
+      {
+        "value": "抵抗(Ω)",
+        "validContext": {
+          "sentence": "抵抗は流れにくさ。オーム(Ω)。",
+          "gloss": "抵抗が大きいほど同じ電圧でも電流が少ない。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "sci-atom-molecule-1",
+    "subject": "science",
+    "skillTag": "chem.atom_molecule_element",
+    "prompt": "水(H₂O)は何の例？",
+    "correct": "化合物の分子",
+    "why": "2種類以上の元素が結合した物質(化合物)で、分子という単位を持つ。",
+    "choices": [
+      {
+        "value": "化合物の分子"
+      },
+      {
+        "value": "単体の分子",
+        "validContext": {
+          "sentence": "酸素(O₂)・窒素(N₂)は1種類の元素のみで構成される単体の分子。",
+          "gloss": "単体=1元素、化合物=2元素以上。両方とも分子(独立した粒子単位)を作りうる。"
+        }
+      },
+      {
+        "value": "原子",
+        "validContext": {
+          "sentence": "He(ヘリウム)は分子を作らず原子のまま存在する希ガス。",
+          "gloss": "原子は最小粒子。分子は原子が結合した粒子。希ガスは単原子分子(=原子)として振る舞う。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "sci-acid-base-1",
+    "subject": "science",
+    "skillTag": "chem.acid_base",
+    "prompt": "BTB液を青色にするのは？",
+    "correct": "塩基性(アルカリ性)",
+    "why": "塩基性 → BTB青、酸性 → BTB黄、中性 → BTB緑。",
+    "choices": [
+      {
+        "value": "塩基性(アルカリ性)"
+      },
+      {
+        "value": "酸性",
+        "validContext": {
+          "sentence": "酸性ではBTB黄、リトマス紙青→赤。",
+          "gloss": "酸性=H⁺を出す、塩基性=OH⁻を出す。中和すると水と塩(えん)。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "sci-photosynth-resp-1",
+    "subject": "science",
+    "skillTag": "bio.photosynthesis_respiration",
+    "prompt": "植物が二酸化炭素を吸収して酸素を放出するのは？",
+    "correct": "光合成",
+    "why": "光合成: CO₂ + H₂O + 光 → 有機物 + O₂。葉緑体で行う。",
+    "choices": [
+      {
+        "value": "光合成"
+      },
+      {
+        "value": "呼吸",
+        "validContext": {
+          "sentence": "呼吸: 有機物 + O₂ → CO₂ + H₂O + エネルギー。動植物どちらも常時行う。",
+          "gloss": "光合成は植物が昼間だけ。呼吸は植物も動物も24時間。植物は昼に両方同時進行。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "sci-mitosis-meiosis-1",
+    "subject": "science",
+    "skillTag": "bio.mitosis_meiosis",
+    "prompt": "体細胞が成長のために行う細胞分裂は？",
+    "correct": "体細胞分裂",
+    "why": "体細胞分裂(有糸分裂)は染色体数が変わらず、同じ細胞を複製。",
+    "choices": [
+      {
+        "value": "体細胞分裂"
+      },
+      {
+        "value": "減数分裂",
+        "validContext": {
+          "sentence": "減数分裂は生殖細胞(卵・精子)を作るときの分裂で染色体数が半分になる。",
+          "gloss": "受精で再び元に戻る。遺伝の多様性の源。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "sci-igneous-1",
+    "subject": "science",
+    "skillTag": "earth.volcanic_plutonic",
+    "prompt": "マグマが地表近くで急に冷えて固まった岩石は？",
+    "correct": "火山岩",
+    "why": "急冷→結晶が小さく斑状組織。玄武岩・安山岩・流紋岩など。",
+    "choices": [
+      {
+        "value": "火山岩"
+      },
+      {
+        "value": "深成岩",
+        "validContext": {
+          "sentence": "マグマが地下深くでゆっくり冷えると深成岩(等粒状組織)。花こう岩など。",
+          "gloss": "両方とも火成岩。冷却速度の違いで結晶サイズが変わる。"
+        }
+      },
+      {
+        "value": "堆積岩",
+        "validContext": {
+          "sentence": "礫・砂・泥が水底でたまって固まると堆積岩。",
+          "gloss": "成因が全く違う。火成岩は溶融由来、堆積岩は風化・運搬・堆積由来。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "sci-front-cold-warm-1",
+    "subject": "science",
+    "skillTag": "earth.front",
+    "prompt": "短時間に強い雨が降り、気温が急激に下がる前線は？",
+    "correct": "寒冷前線",
+    "why": "寒冷前線: 寒気が暖気を押し上げる→積乱雲→短時間強雨。",
+    "choices": [
+      {
+        "value": "寒冷前線"
+      },
+      {
+        "value": "温暖前線",
+        "validContext": {
+          "sentence": "温暖前線は暖気が寒気の上に乗り上げ、長時間しとしと雨が続く。乱層雲。",
+          "gloss": "前線通過後の天気の変化が真逆: 寒冷前線後は寒く晴れ、温暖前線後は暖かい。"
+        }
+      }
+    ]
+  },
+  {
+    "id": "sci-dna-rna-1",
+    "subject": "science",
+    "skillTag": "bio.dna_rna",
+    "prompt": "細胞の核内で遺伝情報を二重らせんで保存する物質は？",
+    "correct": "DNA",
+    "why": "DNAは2本鎖の二重らせん。デオキシリボース。塩基A,T,G,C。",
+    "choices": [
+      {
+        "value": "DNA"
+      },
+      {
+        "value": "RNA",
+        "validContext": {
+          "sentence": "RNAはふつう1本鎖でリボース。塩基A,U(ウラシル),G,C。タンパク質合成の伝令役。",
+          "gloss": "DNA→転写→RNA→翻訳→タンパク質、というセントラルドグマ。"
+        }
+      }
+    ]
+  }
+]
