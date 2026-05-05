@@ -193,3 +193,180 @@ h1 .sub { color: var(--muted); font-weight: 400; font-size: 14px; margin-left: 8
   from { opacity: 0; transform: translateY(-4px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+/* ============================================================
+   Layer 1-8 + パターン認知駆動拡張 (2026-05-05)
+   ============================================================ */
+
+.lead-sub {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: -4px;
+  margin-bottom: 18px;
+}
+
+/* --- Stats bar 追加項目 --- */
+.stats .streak { color: var(--warn); font-weight: 500; }
+.stats .streak.hot {
+  color: #ff7b3a;
+  text-shadow: 0 0 8px rgba(255, 123, 58, 0.5);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+.stats .best { color: var(--accent); font-size: 12px; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* --- メタ行 (Layer chip / pattern chip / skill tag) --- */
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+  align-items: center;
+}
+
+.layer-chip {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+}
+.layer-chip.l1 { background: rgba(126, 231, 135, 0.15); border-color: rgba(126, 231, 135, 0.4); color: #7ee787; }
+.layer-chip.l2 { background: rgba(121, 192, 255, 0.15); border-color: rgba(121, 192, 255, 0.4); color: #79c0ff; }
+.layer-chip.l3 { background: rgba(210, 168, 255, 0.15); border-color: rgba(210, 168, 255, 0.4); color: #d2a8ff; }
+.layer-chip.l4 { background: rgba(255, 166, 87, 0.18); border-color: rgba(255, 166, 87, 0.45); color: #ffa657; }
+.layer-chip.l5 { background: rgba(255, 123, 114, 0.18); border-color: rgba(255, 123, 114, 0.45); color: #ff7b72; }
+.layer-chip.l6 { background: rgba(255, 107, 173, 0.18); border-color: rgba(255, 107, 173, 0.45); color: #ff6bad; }
+.layer-chip.l7 { background: rgba(180, 120, 255, 0.20); border-color: rgba(180, 120, 255, 0.5); color: #b478ff; }
+.layer-chip.l8 { background: rgba(120, 220, 220, 0.18); border-color: rgba(120, 220, 220, 0.45); color: #78dcdc; }
+
+.pattern-chip {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  background: var(--panel-2);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+/* --- パターンヒント --- */
+.fb-pattern {
+  margin-top: 8px;
+  padding: 8px 10px;
+  background: rgba(121, 192, 255, 0.08);
+  border-left: 2px solid var(--contrast);
+  font-size: 12px;
+  color: var(--muted);
+}
+.fb-pattern code {
+  color: var(--contrast);
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  background: rgba(121, 192, 255, 0.1);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+/* --- Layer 分布パネル (ホーム画面) --- */
+.layer-panel {
+  margin-top: 32px;
+  padding: 20px 18px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.layer-panel-title {
+  margin: 0 0 14px;
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.layer-bars { display: flex; flex-direction: column; gap: 8px; }
+.layer-row {
+  display: grid;
+  grid-template-columns: 36px 1fr 60px;
+  gap: 12px;
+  align-items: center;
+}
+.layer-id {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--muted);
+}
+.layer-info { min-width: 0; }
+.layer-label {
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+.layer-band {
+  color: var(--muted);
+  font-size: 11px;
+  margin-left: 6px;
+}
+.layer-bar {
+  height: 6px;
+  background: var(--panel-2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.layer-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+.layer-bar-fill.l1 { background: linear-gradient(90deg, #7ee787, #4ac26b); }
+.layer-bar-fill.l2 { background: linear-gradient(90deg, #79c0ff, #4493f8); }
+.layer-bar-fill.l3 { background: linear-gradient(90deg, #d2a8ff, #a371f7); }
+.layer-bar-fill.l4 { background: linear-gradient(90deg, #ffa657, #f0883e); }
+.layer-bar-fill.l5 { background: linear-gradient(90deg, #ff7b72, #e5534b); }
+.layer-bar-fill.l6 { background: linear-gradient(90deg, #ff6bad, #db2777); }
+.layer-bar-fill.l7 { background: linear-gradient(90deg, #b478ff, #8957e5); }
+.layer-bar-fill.l8 { background: linear-gradient(90deg, #78dcdc, #1f9ea1); }
+
+.layer-count {
+  text-align: right;
+  font-size: 12px;
+  color: var(--muted);
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+}
+.layer-note {
+  margin-top: 14px;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* --- 連鎖節目のフラッシュオーバーレイ --- */
+.flash-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  padding: 18px 32px;
+  background: linear-gradient(135deg, #ff7b3a, #ff6bad);
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(255, 123, 58, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  letter-spacing: 0.03em;
+}
+.flash-overlay.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}

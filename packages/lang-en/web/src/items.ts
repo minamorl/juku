@@ -4,6 +4,10 @@
 
 export type Subject = "english" | "math" | "japanese" | "science" | "social";
 
+// Layer 1-8: 知識想起→概念理解→多段推論→領域横断→反証→再構成→未解決接続→問いの定式化
+// Layer 9-10 (パラダイム横断・知の生成) はスコープ外。将来拡張のため型のみ予約。
+export type Layer = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
 export interface Choice {
   value: string;
   validContext?: {
@@ -21,7 +25,23 @@ export interface DrillItem {
   correct: string;
   why: string;
   sources?: string[];
+  // --- Layer 1-8 + パターン認知駆動の追加フィールド (全てoptional, 既存問題は推論で補完) ---
+  layer?: Layer;            // 認知階層。未指定時は skillTag からヒューリスティックで推論
+  patternTag?: string;      // 同一パターン群を束ねるタグ。skillTagの上位概念。例: "prep.location", "calc.diff_int_direction"
+  nextSimilarId?: string;   // 同じpatternTagの『類題』。連続正解時に磁力で出す
+  nextVariantId?: string;   // 同じpatternTagの『ひねり違い』。難度を一段上げる
 }
+
+export const LAYER_META: Record<Layer, { label: string; band: string }> = {
+  1: { label: "知識想起",     band: "中学〜共通テスト基礎" },
+  2: { label: "概念理解",     band: "共通テスト〜2次易" },
+  3: { label: "多段推論",     band: "2次標準" },
+  4: { label: "領域横断",     band: "2次難" },
+  5: { label: "反証可能性",   band: "東大論述・京大型" },
+  6: { label: "再構成",       band: "学部最高峰" },
+  7: { label: "未解決接続",   band: "院入試・修士研究計画" },
+  8: { label: "問いの定式化", band: "修士〜博士前半" },
+};
 
 export const SUBJECT_META: Record<Subject, { label: string; emoji: string; tagline: string }> = {
   english:  { label: "英語",   emoji: "🅰",  tagline: "語法の境界線を踏む" },
@@ -405,4 +425,55 @@ export function shuffled<T>(arr: T[]): T[] {
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
+}
+
+// ---- Layer ヒューリスティック推論 ----
+// 既存問題は layer 未指定。skillTag/prompt から推論して暫定的に Layer を埋める。
+// 後で結衣が手で精査して layer フィールドを書き込めば上書きされる。
+export function inferLayer(item: DrillItem): Layer {
+  if (item.layer) return item.layer;
+  const tag = item.skillTag.toLowerCase();
+  const promptLen = item.prompt.length;
+
+  // 多段推論を含意するキーワード
+  if (/論述|証明|考察|なぜ|理由を述べ/.test(item.prompt)) return 3;
+  // 概念対比 (vs を含む skillTag は概念理解レベル)
+  if (tag.includes("_vs_") || tag.includes("contrast")) return 2;
+  // 計算手続き・公式適用
+  if (/calculus|probability|combinatorics|vector/.test(tag)) return 2;
+  // 長文・複雑な文脈は概念理解以上
+  if (promptLen > 80) return 2;
+  // それ以外は知識想起
+  return 1;
+}
+
+// パターンタグ推論: skillTag の最初のドット区切り (例 "preposition.at_in" → "preposition")
+export function inferPatternTag(item: DrillItem): string {
+  if (item.patternTag) return item.patternTag;
+  const dot = item.skillTag.indexOf(".");
+  return dot > 0 ? item.skillTag.slice(0, dot) : item.skillTag;
+}
+
+// Layer別の問題プールを返す。境界面提示で使う。
+export function itemsByLayer(layer: Layer, subject?: Subject): DrillItem[] {
+  return ITEMS.filter(it => {
+    if (subject && it.subject !== subject) return false;
+    return inferLayer(it) === layer;
+  });
+}
+
+// 同じpatternTagの類題を返す(自分自身を除く)。next_similar_id が無い場合のフォールバック。
+export function siblingsByPattern(item: DrillItem): DrillItem[] {
+  const pat = inferPatternTag(item);
+  return ITEMS.filter(it => it.id !== item.id && inferPatternTag(it) === pat);
+}
+
+// 全Layerの分布を返す(可視化用)。
+export function layerDistribution(subject?: Subject): Record<Layer, number> {
+  const dist: Record<Layer, number> = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0 };
+  for (const it of ITEMS) {
+    if (subject && it.subject !== subject) continue;
+    dist[inferLayer(it)]++;
+  }
+  return dist;
 }
